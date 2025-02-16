@@ -11,14 +11,7 @@ app.listen(PORT, () => { console.log('Node.js Server ON') });
 
 // Routing - 路由
 app.set('view engine', 'ejs');
-app.get('/', (request, response) => {
-	console.log(exchangeRate);
-	response.render('home', { exchangeRate : exchangeRate });
-});
-app.get('/hello', (request, response) => {
-	// 叫 express 去 render views 底下叫做 hello 的檔案，副檔名可省略
-	response.render('hello');
-})
+app.get('/', (request, response) => { response.render('home', { exchangeRate : exchangeRate }); });
 
 function loadExc()
 {
@@ -37,16 +30,25 @@ function loadExc()
 			return;
 		}
 
-		// 用 cheerio 解析 html 資料
+		// 用 cheerio 解析 html 資料, 轉成 1 NT$ = x 外幣$
+		exchangeRate = [{curr: '新台幣 (NTD)', rate: 1.0}];
 		var $ = cheerio.load(body);
-		$('table[title="牌告匯率"] tr').map((idx, elm) => {
+		$('table[title="牌告匯率"] tbody tr').map((idx, elm) => {
 			var curr = $(elm).find('td[data-table="幣別"]').find('div.xrt-cur-indent').text().trim();
 			var excr = $(elm).find('td[data-table="本行現金賣出"]').eq(0).text().trim();
-			if (excr != '-') exchangeRate.push({
-				curr: curr,
-				rate: eval(excr)
-			});
-			// console.log('load: ' + curr + ' :: ' + excr);
+			// console.info(`${curr} :: ${excr}`);
+			try{
+				exchangeRate.push({
+					curr: curr,
+					rate: (1.0 / eval(excr))
+				});
+			}catch(e){
+				console.error(`Parsing exchange rate fail: ${curr} :: ${excr}`);
+			}
 		});
+		console.log(`Load ${exchangeRate.length} exchange rate data.`);
 	});
+
+	// Daily get new data
+	setTimeout(loadExc, 24 * 60 * 60 * 1000);
 }
