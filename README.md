@@ -1,40 +1,27 @@
 # GreenGarlic
 
-綠蒜頭-- 蒜會綠 -- 算滙率
+我的 Node.js 練習 - 滙率轉換器
+綠蒜頭 --> 蒜會綠 --> 算滙率
 
+## Info
+- host on Render.com
+  - url: https://greengarlic.onrender.com
+- Node.js plugins:
+  - npm install cheerio
+  - npm install request
+- Data Source:
+  - 臺灣銀行牌告匯率
+  - url: https://rate.bot.com.tw/xrt?Lang=zh-TW
 
-## Hosting Node.js by Render
-- Reference:
-  - https://www.freecodecamp.org/chinese/news/how-to-deploy-nodejs-application-with-render/
-  - https://medium.com/wei30172/heroku-%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88-%E4%BD%BF%E7%94%A8-render-%E5%85%8D%E8%B2%BB%E4%BD%88%E7%BD%B2-node-js-app-bc0c2ac795ad
-- Render: https://render.com/
-- Result: https://renderhostingtest.onrender.com/
+## Render.com Steps:
+1. Signin Render.com
+2. Create Project
+3. Create Service --> WEB SERVICE
+4. credentials --> balachuang --> configure in GitHub --> select GreenGarlic
+5. select GitHub path: balachuang \ GreenGarlic
+6. install command: npm install
+7. deploy command: node server.js
 
-## Node.js
-- MVC: https://hackmd.io/@Heidi-Liu/note-be201-express-node
-
-
-==>
- NodeJs_onFirebase
- NodeJs_onRender
-
-
-client (Chrome) --(request)--> server (Node.js)
-protocal: HTTP
-
-
-request:
-1. url
-2. xxxxxxx (header, cookie, session, method)
-3. method:
-   - GET
-   - PUT
-   - POST
-   - DELETE
-
-
-## 
-npm install cheerio
 ## Reference:
-ejs: https://hsuchihting.github.io/node/20221023/3934524839/
-抓網頁: https://blog.gtwang.org/programming/scraping-the-web-with-nodejs/
+- ejs: https://hsuchihting.github.io/node/20221023/3934524839/
+- 抓網頁: https://blog.gtwang.org/programming/scraping-the-web-with-nodejs/
