@@ -14,7 +14,7 @@ app.listen(PORT, () => { console.log('Node.js Server ON') });
 app.set('view engine', 'ejs');
 app.get('/', (request, response) => { response.render('home', { exchangeRate : exchangeRate }); });
 
-async function loadExc()
+function loadExc()
 {
 	tools.loadExchangeRate(function(data){
 		exchangeRate = data;
