@@ -24,7 +24,7 @@
 				<tr>
 					<td colspan="3" style="padding: 1em 0em;">
 						<select id="srcCurrSelector" type="seletor"></select>&nbsp;&nbsp;
-						<input type="number" id="srcMoney" value="1" style="width:10em; text-align:center;">&nbsp;&nbsp;
+						<input type="number" id="srcMoney" value="1" style="width:7em; text-align:center;">&nbsp;&nbsp;
 						元等於：
 					</td>
 				</tr>
@@ -48,7 +48,7 @@
 		for (var n in exchangeRates)
 		{
 			var exRate = exchangeRates[n];
-			var tgtMoney = formatNum(exRate.rate);
+			var tgtMoney = formatNum(1.0 / exRate.rate);
 			$('#tgtMoneyArea').append(`<tr><td>${exRate.curr}</td><td>${tgtMoney}</rd><td>元</td></tr>`);
 			$('#srcCurrSelector').append(`<option value="${exRate.curr}">${exRate.curr}</option>`);
 		}
@@ -76,7 +76,7 @@
 		for (var n in exchangeRates)
 		{
 			var exRate = exchangeRates[n];
-			var tgtMoney = formatNum(srcMoney * exRate.rate / srcRate);
+			var tgtMoney = formatNum(srcMoney * srcRate / exRate.rate);
 			$('#tgtMoneyArea').append(`<tr><td>${exRate.curr}</td><td>${tgtMoney}</rd><td>元</td></tr>`);
 			$('#srcCurrSelector').append(`<option value="${exRate.curr}">${exRate.curr}</option>`);
 		}

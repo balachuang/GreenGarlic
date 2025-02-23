@@ -2,6 +2,10 @@ const express = require('express');
 const tools = require('./tools');
 
 // load exchange rate before Server start
+// exchangeRate = {
+//   curr: '幣別名稱',
+//   rate: curr/NT (curr 1 元可以換多少台幣)
+// }
 var exchangeRate = [];
 loadExc();
 
@@ -16,7 +20,7 @@ app.get('/', (request, response) => { response.render('home', { exchangeRate : e
 
 function loadExc()
 {
-	tools.loadExchangeRate(function(data){
+	tools.loadExchangeRate_ANUE(function(data){
 		exchangeRate = data;
 		console.log(`[server.js] Load ${exchangeRate.length} exchange rate data.`);
 	});
