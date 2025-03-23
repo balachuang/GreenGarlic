@@ -1,7 +1,7 @@
 module.exports = {
 	loadExchangeRate_BOT: function (updateBack) {
 		// currency to be put on top
-		var topCurr = ['美元','歐元','英鎊','日元'];
+		var topCurr = ['美元','歐元','英鎊','日元','泰銖'];
 
 		// load exchange rate
 		var request = require("request");
